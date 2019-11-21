@@ -10,6 +10,9 @@ module Parametricity where
 f :: a -> a
 f = \x -> x
 
+-- or
+-- f x = id x
+
 -- 2. We can get a more comfortable appreciation of parametricity
 -- by looking at a -> a -> a. This hypothetical
 -- function a -> a -> a has two–and only two–implementations.
