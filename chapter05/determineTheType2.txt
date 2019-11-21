@@ -1,0 +1,81 @@
+Type variable or specific type constructor?
+
+1. You will be shown a type declaration, and you should categorize
+each type. The choices are a fully polymorphic type variable,
+constrained polymorphic type variable, or concrete type constructor.
+
+  2. Categorize each component of the type signature as described
+  in the previous example.
+  f :: zed -> Zed -> Blah
+fully polymorphic zed, concrete Zed, concrete Blah
+
+  3. Categorize each component of the type signature
+  f :: Enum b => a -> b -> C
+  fully polymorphic a, constrained polymorphic (Enum) b, concrete C
+
+  4. Categorize each component of the type signature
+  f :: f -> g -> C
+  fully polymorphic f, fully polymorphic g, concrete C
+
+Write a type signature
+
+For the following expressions, please add a type signature. You
+should be able to rely on GHCi type inference to check your work,
+although you might not have precisely the same answer as GHCi
+gives (due to polymorphism, etc).
+1. While we haven’t fully explained this syntax yet, you’ve seen it
+in Chapter 2 and as a solution to an exercise in Chapter 4. This
+syntax is a way of destructuring a single element of a list.
+
+functionH :: [a] -> a
+functionH (x:_) = x
+
+functionC :: (Ord a) => a -> a -> Bool
+functionC x y = if (x > y) then True else False
+
+functionS :: (a, b) -> b
+functionS (x, y) = y
+
+
+Given a type, write the function
+
+1. There is only one function definition that typechecks and doesn’t
+go into an infinite loop when you run it.
+i :: a -> a
+i a = a
+
+
+2. There is only one version that works.
+c :: a -> b -> a
+c a b = a
+
+
+3. Given alpha equivalence are c'' and c (see above) the same
+thing?
+c'' :: b -> a -> b
+c'' b a  = b 
+Yes
+
+4. Only one version that works.
+c' :: a -> b -> b
+c' a b  = b  
+
+
+5. There are multiple possibilities, at least two of which you’ve
+seen in previous chapters.
+r :: [a] -> [a]
+r xs = tail xs
+r xs = reverse xs 
+
+6. Only one version that will typecheck.
+co :: (b -> c) -> (a -> b) -> a -> c
+co bToC aToB a = bToC (aToB a) -- or -- bToC $ aToB $ a
+
+7. One version will typecheck.
+a :: (a -> c) -> a -> a
+a aToC a = a
+
+
+8. One version will typecheck.
+a' :: (a -> b) -> a -> b
+a' aToB a = aToB a -- or -- aToB $ a
