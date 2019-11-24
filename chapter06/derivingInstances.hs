@@ -8,6 +8,7 @@ instance Eq DayOfWeek where
   (==) Fri Fri = True
   (==) Sat Sat = True
   (==) Sun Sun = True
+  (==) _ _ = False
 
   -- (/=) undefined . It will compile with warnings
 
