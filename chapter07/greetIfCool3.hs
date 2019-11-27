@@ -6,3 +6,4 @@ greetIfCool coolness =
     True -> putStrLn "eyyyyy. What's shaking?"
     False -> putStrLn "pshhhh."
   where cool = coolness == "downright frosty yo"
+
